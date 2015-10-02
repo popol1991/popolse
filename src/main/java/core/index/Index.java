@@ -1,8 +1,8 @@
 package core.index;
 
-import core.models.Dictionary;
-import core.models.Posting;
-import core.models.Term;
+import core.collections.Dictionary;
+import core.collections.Posting;
+import core.collections.Term;
 import core.utils.Constants;
 import core.utils.FilePersister;
 
@@ -31,10 +31,11 @@ public class Index {
         if (Files.exists(path)) { // index existed
             // load index from serialized files
             this.posting = (Posting) FilePersister.loadObject(postingPath);
-            this.dictionary = (Dictionary) FilePersister.loadObject(dictPath);
+            Dictionary.loadFromPath(dictPath);
+            this.dictionary = Dictionary.getSingleton();
         } else { // index not existed
             this.posting = new Posting();
-            this.dictionary = new Dictionary();
+            this.dictionary = Dictionary.getSingleton();
             this.docNum = 0;
             flush();
         }
@@ -45,10 +46,7 @@ public class Index {
     }
 
     public void addTermDocPair(Term term, long docId) {
-        if (!dictionary.hasTerm(term)) {
-            dictionary.addTerm(term);
-        }
-        int termId = dictionary.getTermId(term);
+        int termId = term.getTermId();
         posting.addTermDocPair(termId, docId);
     }
 

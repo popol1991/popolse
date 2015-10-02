@@ -1,6 +1,7 @@
 package core.analyzer;
 
-import core.models.Term;
+import core.collections.Dictionary;
+import core.collections.Term;
 
 import java.util.List;
 
@@ -9,4 +10,18 @@ import java.util.List;
  */
 public abstract class Analyzer {
     public abstract List<Term> tokenize(String text);
+
+    protected Dictionary dictionary;
+
+    public Analyzer() {
+        this.dictionary = Dictionary.getSingleton();
+    }
+
+    protected int getTermId(String word) {
+        if (!this.dictionary.hasTerm(word)) {
+            this.dictionary.addTerm(word);
+        }
+        int termId = this.dictionary.getTermId(word);
+        return termId;
+    }
 }

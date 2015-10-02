@@ -1,4 +1,4 @@
-package core.models;
+package core.collections;
 
 import core.analyzer.Analyzer;
 
@@ -9,6 +9,7 @@ import java.util.List;
  * Indexable and searchable unit for a search engine.
  */
 public class Document {
+    private long docId;
     private List<Term> termList;
     private Analyzer analyzer;
 
@@ -22,5 +23,13 @@ public class Document {
 
     public List<Term> getTermList() {
         return this.termList;
+    }
+
+    public void setDocId(long docId) {
+        this.docId = docId;
+    }
+
+    public long getDocId() {
+        return docId;
     }
 }

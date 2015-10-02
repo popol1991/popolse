@@ -1,7 +1,7 @@
 package core.index;
 
-import core.models.Document;
-import core.models.Term;
+import core.collections.Document;
+import core.collections.Term;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ public class IndexWriter {
 
     public boolean addDocument(Document doc) {
         long docId = index.getDocNum() + 1;
+        doc.setDocId(docId);
         List<Term> termList = doc.getTermList();
         for (Term term : termList) {
             index.addTermDocPair(term, docId);

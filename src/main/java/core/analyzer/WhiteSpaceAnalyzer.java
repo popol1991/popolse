@@ -1,6 +1,6 @@
 package core.analyzer;
 
-import core.models.Term;
+import core.collections.Term;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,9 @@ public class WhiteSpaceAnalyzer extends Analyzer {
 
         List<Term> retList = new ArrayList<Term>();
         for (String word : words) {
-            retList.add(new Term(word));
+            int termId = getTermId(word);
+            Term term = new Term(termId, word);
+            retList.add(term);
         }
         return retList;
     }
