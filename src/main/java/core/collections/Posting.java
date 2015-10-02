@@ -25,4 +25,8 @@ public class Posting implements Serializable {
         }
         invList.get(termId).add(docId);
     }
+
+    public List<Long> getInvList(Term term) {
+        return new LinkedList<>(this.invList.get(term.getTermId()));
+    }
 }

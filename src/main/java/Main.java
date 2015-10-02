@@ -1,9 +1,11 @@
 import core.analyzer.WhiteSpaceAnalyzer;
-import core.index.Index;
 import core.index.IndexWriter;
-import core.models.Document;
+import core.collections.Document;
 import core.search.Searcher;
 import core.search.result.Ranking;
+import core.search.result.Result;
+
+import java.util.Iterator;
 
 /**
  * Created by Kyle on 7/12/15.
@@ -20,5 +22,10 @@ public class Main {
 
         Searcher searcher = new Searcher("index");
         Ranking rank = searcher.search("university");
+        Iterator<Result> it = rank.iterator();
+        while (it.hasNext()) {
+            long docId = it.next().getDocId();
+            System.out.println(docId);
+        }
     }
 }

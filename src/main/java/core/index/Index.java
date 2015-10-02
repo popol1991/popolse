@@ -9,6 +9,7 @@ import core.utils.FilePersister;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 /**
  * Created by Kyle on 7/8/15.
@@ -59,4 +60,7 @@ public class Index {
         FilePersister.saveObject(postingPath, posting);
     }
 
+    public List<Long> getInvList(Term term) {
+        return this.posting.getInvList(term);
+    }
 }
