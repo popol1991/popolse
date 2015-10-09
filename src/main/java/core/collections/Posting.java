@@ -27,6 +27,11 @@ public class Posting implements Serializable {
     }
 
     public List<Long> getInvList(Term term) {
-        return new LinkedList<>(this.invList.get(term.getTermId()));
+        int termId = term.getTermId();
+        if (this.invList.containsKey(termId)) {
+            return new ArrayList<>(this.invList.get(term.getTermId()));
+        } else {
+            return new ArrayList<>();
+        }
     }
 }

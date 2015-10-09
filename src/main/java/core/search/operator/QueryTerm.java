@@ -1,6 +1,7 @@
 package core.search.operator;
 
 import core.search.model.Model;
+import core.search.result.InvListResult;
 import core.search.result.Ranking;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class QueryTerm extends Query {
     }
 
     @Override
-    public Ranking evaluate(Model model) {
-        return null;
+    public InvListResult evaluate(Model model) {
+        return new InvListResult(this.invList);
     }
 }

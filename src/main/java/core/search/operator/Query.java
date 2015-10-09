@@ -2,8 +2,10 @@ package core.search.operator;
 
 import core.search.model.Model;
 import core.search.result.Ranking;
+import core.search.result.Result;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
  */
 public abstract class Query {
     protected List<Query> subQueryList;
+    protected List<Result> resultList;
 
     protected Query() {
         this.subQueryList = new LinkedList<>();
@@ -21,5 +24,12 @@ public abstract class Query {
         this.subQueryList.add(query);
     }
 
-    public abstract Ranking evaluate(Model model);
+    public void evalChildren(Model model) {
+        resultList = new ArrayList<>();
+        for (Query q : subQueryList) {
+            resultList.add(q.evaluate(model));
+        }
+    }
+
+    public abstract Result evaluate(Model model);
 }

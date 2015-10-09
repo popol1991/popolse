@@ -6,6 +6,7 @@ import core.collections.Term;
 import core.utils.Constants;
 import core.utils.FilePersister;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -35,6 +36,8 @@ public class Index {
             Dictionary.loadFromPath(dictPath);
             this.dictionary = Dictionary.getSingleton();
         } else { // index not existed
+            // create index directory
+            (new File(dir)).mkdir();
             this.posting = new Posting();
             this.dictionary = Dictionary.getSingleton();
             this.docNum = 0;
@@ -62,5 +65,9 @@ public class Index {
 
     public List<Long> getInvList(Term term) {
         return this.posting.getInvList(term);
+    }
+
+    public void incDocNum() {
+        this.docNum++;
     }
 }

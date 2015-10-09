@@ -22,6 +22,7 @@ public class IndexWriter {
         for (Term term : termList) {
             index.addTermDocPair(term, docId);
         }
+        index.incDocNum();
         return true;
     }
 

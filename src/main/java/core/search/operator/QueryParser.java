@@ -19,15 +19,16 @@ public class QueryParser {
     }
 
     public Query parse(String queryText) {
+        /**
+         * Only allow one term query now
+         * If there were more terms in the query
+         * Only the first term is processed.
+         */
         List<Term> terms = analyzer.tokenize(queryText);
         Query retRoot = new QueryOR();
-        for (Term term : terms) {
-            List<Long> invList = index.getInvList(term);
-            QueryTerm qTerm = new QueryTerm(invList);
-            QueryScore qScore = new QueryScore();
-            qScore.addSubQuery(qTerm);
-            retRoot.addSubQuery(qScore);
-        }
-        return retRoot;
+        QueryTerm qTerm = new QueryTerm(index.getInvList(terms.get(0)));
+        QueryScore qScore = new QueryScore();
+        qScore.addSubQuery(qTerm);
+        return qScore;
     }
 }
