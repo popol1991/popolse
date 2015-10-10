@@ -16,7 +16,7 @@ public class Dictionary implements Serializable {
 
     public static Dictionary getSingleton() {
         if (singleton == null) {
-            singleton = new Dictionary();
+            System.err.println("Dictionary is not loaded!");
         }
         return singleton;
     }

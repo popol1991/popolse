@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/lemur/lemur.iml" filepath="$PROJECT_DIR$/lemur/lemur.iml" />
       <module fileurl="file://$PROJECT_DIR$/popolse.iml" filepath="$PROJECT_DIR$/popolse.iml" />
     </modules>
   </component>

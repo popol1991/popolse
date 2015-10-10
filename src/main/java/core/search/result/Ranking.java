@@ -27,7 +27,7 @@ public class Ranking extends Result
         } else {
             int idx = 0;
             for (ResultItem it : this.resultItemList) {
-                if (it.getScore() > r.getScore()) {
+                if (it.getScore() >= r.getScore()) {
                     break;
                 }
                 idx++;

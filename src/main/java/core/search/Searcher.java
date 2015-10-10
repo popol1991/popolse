@@ -15,10 +15,11 @@ import core.search.result.Ranking;
 public class Searcher {
     private Index index;
     private Model model = new BooleanModel(); // default to be Unranked Boolean model
-    private Analyzer analyzer = new WhiteSpaceAnalyzer(); // default to be white space analyzer
+    private Analyzer analyzer; // default to be white space analyzer
 
     public Searcher(String dir) {
         this.index = new Index(dir);
+        this.analyzer = new WhiteSpaceAnalyzer();
     }
 
     public Ranking search(String queryText) {
