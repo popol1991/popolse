@@ -1,3 +1,5 @@
+import core.index.Index;
+import core.index.tool.WarcIndexTool;
 import core.search.Searcher;
 import core.search.result.Ranking;
 import core.search.result.ResultItem;
@@ -10,12 +12,14 @@ import java.util.Iterator;
  */
 public class Main {
     public static void main(String[] argv) throws IOException {
-        Searcher searcher = new Searcher("index");
-        Ranking rank = searcher.search("the");
+        Index index = new Index("index");
+        Searcher searcher = new Searcher(index);
+        Ranking rank = searcher.search("money");
         Iterator<ResultItem> it = rank.iterator();
         while (it.hasNext()) {
             long docId = it.next().getDocId();
-            System.out.println(docId);
+            String trecId = index.getSource(docId, "id");
+            System.out.println(trecId);
         }
 
 //        WarcIndexTool index = new WarcIndexTool();

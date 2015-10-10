@@ -18,9 +18,13 @@ public class IndexWriter {
     public boolean addDocument(Document doc) {
         long docId = index.getDocNum() + 1;
         doc.setDocId(docId);
-        List<Term> termList = doc.getTermList();
-        for (Term term : termList) {
-            index.addTermDocPair(term, docId);
+        List<String> fieldList = doc.getFieldList();
+        for (String field : fieldList) {
+            index.setSource(docId, field, doc.getSource(field));
+            List<Term> termList = doc.getTermList(field);
+            for (Term term : termList) {
+                index.addTermDocPair(docId, field, term);
+            }
         }
         index.incDocNum();
         return true;

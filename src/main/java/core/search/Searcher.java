@@ -22,6 +22,11 @@ public class Searcher {
         this.analyzer = new WhiteSpaceAnalyzer();
     }
 
+    public Searcher(Index index) {
+        this.index = index;
+        this.analyzer = new WhiteSpaceAnalyzer();
+    }
+
     public Ranking search(String queryText) {
         QueryParser parser = new QueryParser(analyzer, index);
         Query queryTree = parser.parse(queryText);

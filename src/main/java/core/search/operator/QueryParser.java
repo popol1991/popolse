@@ -26,7 +26,7 @@ public class QueryParser {
          */
         List<Term> terms = analyzer.tokenize(queryText);
         Query retRoot = new QueryOR();
-        QueryTerm qTerm = new QueryTerm(index.getInvList(terms.get(0)));
+        QueryTerm qTerm = new QueryTerm(index.getInvList("title", terms.get(0)));
         QueryScore qScore = new QueryScore();
         qScore.addSubQuery(qTerm);
         return qScore;

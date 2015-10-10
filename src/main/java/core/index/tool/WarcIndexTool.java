@@ -39,7 +39,8 @@ public class WarcIndexTool {
                     org.jsoup.nodes.Document soup = Jsoup.parse(html);
                     String title = soup.title();
                     Document doc = new Document(analyzer);
-                    doc.addContent(title);
+                    doc.setContent("title", title);
+                    doc.setContent("id", trecID);
                     indexer.addDocument(doc);
                 }
             }
